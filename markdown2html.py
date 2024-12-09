@@ -94,7 +94,8 @@ def main():
     """
     # Check if the number of arguments is sufficient
     if len(sys.argv) < 3:
-        print("Usage: ./markdown2html.py README.md README.html", file=sys.stderr)
+        print("Usage: ./markdown2html.py README.md README.html",
+              file=sys.stderr)
         exit(1)
 
     # Get the file names from the arguments
