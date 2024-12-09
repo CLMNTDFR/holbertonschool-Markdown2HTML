@@ -55,10 +55,10 @@ def convert_markdown_ul_list_to_html(lines):
                 # Ferme la balise <ul> à la fin de la liste
                 html_lines.append('</ul>\n')
                 in_list = False
-            # Ajoute la ligne sans modification si ce n'est pas un élément de liste
+            # Ajoute la ligne sans modification
             html_lines.append(line)
 
-    if in_list:  # Si la liste se termine par un élément sans une ligne vide après
+    if in_list:
         html_lines.append('</ul>\n')
 
     return html_lines
