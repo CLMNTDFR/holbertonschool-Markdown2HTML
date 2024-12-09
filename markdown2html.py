@@ -65,6 +65,15 @@ def convert_markdown_ul_list_to_html(lines):
 
 
 def convert_markdown_ol_list_to_html(lines):
+    """
+    Convert Markdown ordered list syntax to HTML.
+
+    Args:
+        lines (list): List of lines from the Markdown file.
+
+    Returns:
+        list: List of converted lines with HTML ordered list.
+    """
     in_list = False
     html_lines = []
 
@@ -83,6 +92,48 @@ def convert_markdown_ol_list_to_html(lines):
 
     if in_list:
         html_lines.append("</ol>\n")
+
+    return html_lines
+
+
+def convert_markdown_paragraph_to_html(lines):
+    """
+    Convert Markdown paragraphs to HTML.
+
+    Args:
+        lines (list): List of lines from the Markdown file.
+
+    Returns:
+        list: List of converted lines with HTML paragraphs.
+    """
+    html_lines = []
+    in_paragraph = False
+
+    for line in lines:
+        stripped_line = line.strip()
+
+        # If the line is not empty and not a list or heading
+        if stripped_line and not stripped_line.startswith(("#", "-", "*")):
+            if not in_paragraph:
+                # Start a new paragraph
+                html_lines.append("<p>\n")
+                in_paragraph = True
+            # Add the line to the paragraph
+            html_lines.append(f"    {stripped_line}<br/>\n")
+        else:
+            if in_paragraph:
+                # Close the current paragraph / # Remove the last <br/>
+                html_lines[-1] = html_lines[-1].replace("<br/>\n", "\n")
+                html_lines.append("</p>\n")
+                in_paragraph = False
+            # Add the line as is
+            html_lines.append(line)
+
+    # Close the last paragraph if still open
+    if in_paragraph:
+        # Remove the last <br/>
+        html_lines[-1] = html_lines[-1].replace("<br/>\n", "\n")
+        html_lines.append("</p>\n")
 
     return html_lines
 
@@ -119,6 +170,9 @@ def main():
 
     # Convert Markdown ordered lists to HTML
     converted_lines = convert_markdown_ol_list_to_html(converted_lines)
+
+    # Convert Markdown paragraphs to HTML
+    converted_lines = convert_markdown_paragraph_to_html(converted_lines)
 
     # Write the converted lines to the HTML file
     with open(html_file, "w") as html:
