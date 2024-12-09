@@ -7,7 +7,14 @@ import sys
 import os
 
 def main():
-    # Vérifie si le nombre d'arguments est suffisant
+    """
+    Main function that converts a Markdown file to HTML.
+
+    Reads the name of the Markdown file from the command line arguments,
+    checks if the file exists, and exits with an error if it doesn't.
+
+    Usage: ./markdown2html.py README.md README.html
+    """
     if len(sys.argv) < 3:
         sys.stderr.write("Usage: ./markdown2html.py README.md README.html\n")
         sys.exit(1)
