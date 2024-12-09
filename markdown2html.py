@@ -6,6 +6,7 @@ Markdown to HTML converter script - Task 0.
 import sys
 import os
 
+
 def main():
     """
     Main function that verifies arguments and file existence.
