@@ -16,20 +16,19 @@ def main():
     Usage: ./markdown2html.py README.md README.html
     """
     if len(sys.argv) < 3:
-        sys.stderr.write("Usage: ./markdown2html.py README.md README.html\n")
-        sys.exit(1)
+        print("Usage: ./markdown2html.py README.md README.html",
+              file=sys.stderr)
+        exit(1)
 
-    # Récupère les noms des fichiers en argument
-    input_file = sys.argv[1]
-    output_file = sys.argv[2]
+    markdown_file = sys.argv[1]
+    html_file = sys.argv[2]
 
-    # Vérifie si le fichier Markdown existe
-    if not os.path.isfile(input_file):
-        sys.stderr.write(f"Missing {input_file}\n")
-        sys.exit(1)
+    if not os.path.exists(markdown_file):
+        print(f"Missing {markdown_file}", file=sys.stderr)
+        exit(1)
 
     # Si toutes les vérifications passent, termine sans erreur
-    sys.exit(0)
+    exit(0)
 
 if __name__ == "__main__":
     main()
