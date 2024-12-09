@@ -19,7 +19,7 @@ def convert_markdown_heading_to_html(lines):
     """
     converted_lines = []
     for line in lines:
-        for i in range(6, 0, -1):  # Vérifie les niveaux de titre de # à ######
+        for i in range(6, 0, -1):
             # Exactement i dièses suivis d'un espace
             if line.startswith('#' * i + ' '):
                 line = f'<h{i}>{line[i+1:].strip()}</h{i}>\n'
@@ -66,11 +66,13 @@ def convert_markdown_ul_list_to_html(lines):
 
 def main():
     """
-    Main function that verifies arguments, file existence, and converts Markdown to HTML.
+    Main function that verifies arguments, file existence
+    and converts Markdown to HTML.
     """
     # Vérifie si le nombre d'arguments est suffisant
     if len(sys.argv) < 3:
-        print("Usage: ./markdown2html.py README.md README.html", file=sys.stderr)
+        print("Usage: ./markdown2html.py README.md README.html",
+               file=sys.stderr)
         exit(1)
 
     # Récupère les noms des fichiers en argument
