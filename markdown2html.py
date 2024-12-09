@@ -72,7 +72,7 @@ def main():
     # Vérifie si le nombre d'arguments est suffisant
     if len(sys.argv) < 3:
         print("Usage: ./markdown2html.py README.md README.html",
-               file=sys.stderr)
+              file=sys.stderr)
         exit(1)
 
     # Récupère les noms des fichiers en argument
